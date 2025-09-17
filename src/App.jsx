@@ -1,7 +1,13 @@
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import Main from "./components/Main"
+
 const App = () => {
   return (
     <>
-      <h1>WeatherPro - Best Weather Forecast Website</h1>
+      <Header />
+      <Main />
+      <Footer />
     </>
   )
 }
