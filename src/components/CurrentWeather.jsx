@@ -1,36 +1,47 @@
+import { useSelector } from "react-redux"
+
 const CurrentWeather = () => {
-    return (
-        <section className="big-card">
-            <div className="font-secondary text-xl font-semibold text-primary mb-2">Dhaka, Bangladesh</div>
-            <div className="text-text-secondary mb-8">Wednesday, September 17, 2025</div>
+  const dateFormatOptions = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", dateFormatOptions);
+  const { currentWeather, status, error } = useSelector((state) => state.weather);
 
-            <div className="flex items-center gap-4 mb-8">
-                <div className="font-secondary text-5xl md:text-[4rem] font-bold text-primary">72°</div>
-                <div className="text-5xl md:text-[4rem]">☀️</div>
-            </div>
+  if (status === "loading") return <div className="text-center">Loading...</div>;
+  if (error) return <div className="text-center text-red-500">{error}</div>;
+  if (!currentWeather) return null;
 
-            <div className="text-xl font-medium mb-8 capitalize">Sunny and Clear</div>
+  return (
+    <section className="big-card">
+      <div className="font-secondary text-xl font-semibold text-primary mb-2">{currentWeather.name}, {currentWeather.sys.country}</div>
+      <div className="text-text-secondary mb-8">{formattedDate}</div>
 
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-4 [&>div]:flex [&>div]:justify-between [&>div]:items-center [&>div]:p-3 [&>div]:bg-card-bg [&>div]:rounded-(--radius) [&>div]:border [&>div]:border-borderColor">
-                <div>
-                    <span className="text-text-secondary font-medium">Feels like</span>
-                    <span className="text-primary font-semibold">75°F</span>
-                </div>
-                <div>
-                    <span className="text-text-secondary font-medium">Humidity</span>
-                    <span className="text-primary font-semibold">65%</span>
-                </div>
-                <div>
-                    <span className="text-text-secondary font-medium">Wind Speed</span>
-                    <span className="text-primary font-semibold">8 mph</span>
-                </div>
-                <div>
-                    <span className="text-text-secondary font-medium">UV Index</span>
-                    <span className="text-primary font-semibold">6</span>
-                </div>
-            </div>
-        </section>
-    )
+      <div className="flex items-center gap-4 mb-8">
+        <div className="font-secondary text-5xl md:text-[4rem] font-bold text-primary">{Math.round(currentWeather.main.temp)}°</div>
+        <div className="text-5xl md:text-[4rem]"><img src={`https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`} alt={currentWeather.weather[0].description} /></div>
+      </div>
+
+      <div className="text-xl font-medium mb-8 capitalize">{currentWeather.weather[0].description}</div>
+
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-4 [&>div]:flex [&>div]:justify-between [&>div]:items-center [&>div]:p-3 [&>div]:bg-card-bg [&>div]:rounded-(--radius) [&>div]:border [&>div]:border-borderColor">
+        <div>
+          <span className="text-text-secondary font-medium">Feels like</span>
+          <span className="text-primary font-semibold">{Math.round(currentWeather.main.feels_like)}°C</span>
+        </div>
+        <div>
+          <span className="text-text-secondary font-medium">Humidity</span>
+          <span className="text-primary font-semibold">{currentWeather.main.humidity}%</span>
+        </div>
+        <div>
+          <span className="text-text-secondary font-medium">Wind Speed</span>
+          <span className="text-primary font-semibold">{currentWeather.wind.speed}m/s</span>
+        </div>
+        <div>
+          <span className="text-text-secondary font-medium">Visibility</span>
+          <span className="text-primary font-semibold">{currentWeather.visibility / 1000}km</span>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 export default CurrentWeather
