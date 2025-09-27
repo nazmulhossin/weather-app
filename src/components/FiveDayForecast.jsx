@@ -20,7 +20,7 @@ const SevenDayForecast = () => {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5">
         {
           uniqueDays.map((day, index) => (
-            <div key={index} className="bg-card-bg rounded-(--radius) px-4 py-5 text-center transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20lspx_rgba(0,0,0,0.15)] hover:dark:shadow-[0_6px_15px_rgba(255,255,255,0.1)] border border-borderColor">
+            <div key={index} className="bg-card-bg rounded-(--radius) px-4 py-5 text-center transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.15)] hover:dark:shadow-[0_6px_15px_rgba(255,255,255,0.1)] border border-borderColor">
               <div className="font-semibold mb-2 text-text-primary">{index === 0 ? "Today" : new Date(day.dt_txt).toLocaleDateString('en-US', { weekday: 'long' })}</div>
               <div className="flex justify-center"><img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt={day.weather[0].description} className="size-30 md:size-25" /></div>
               <div className="flex justify-between mt-4">
