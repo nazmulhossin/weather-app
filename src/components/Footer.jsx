@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-header-bg py-10 text-center border-[1px] border-borderColor shadow-[0_-4px_20px_rgba(15, 23, 42, 0.08)]">
+    <footer className="bg-header-bg py-10 text-center border-t-[1px] border-borderColor shadow-[0_-4px_20px_rgba(15, 23, 42, 0.08)]">
       <div className="container-custom">
         <div className="flex justify-center items-center gap-12 flex-wrap mb-4">
           <a href="https://openweathermap.org/" target="_blank" className="footer-link">Weather API</a>

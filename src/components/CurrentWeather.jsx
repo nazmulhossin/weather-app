@@ -16,7 +16,7 @@ const CurrentWeather = () => {
         <div className="text-5xl md:text-[4rem]"><img src={`https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`} alt={currentWeather.weather[0].description} /></div>
       </div>
 
-      <div className="text-xl font-medium mb-8 capitalize">{currentWeather.weather[0].description}</div>
+      <div className="text-xl text-text-primary font-semibold mb-8 capitalize">{currentWeather.weather[0].description}</div>
 
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-4 [&>div]:flex [&>div]:justify-between [&>div]:items-center [&>div]:p-3 [&>div]:bg-card-bg [&>div]:rounded-(--radius) [&>div]:border [&>div]:border-borderColor">
         <div>
