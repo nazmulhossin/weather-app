@@ -19,6 +19,14 @@
   /* Border */
   --color-borderColor: #e5e7eb;
 
+  /* skeleton */
+  --skeleton: #e2e8f0;
+  --skeleton-shimmer: #f1f5f9;
+
+  /* Error */
+  --color-error: #dc2626;
+  --color-error-bg: #fef2f2;
+
   /* Radius */
   --radius: 0.4rem;
 

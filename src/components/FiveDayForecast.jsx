@@ -1,11 +1,7 @@
 import { useSelector } from "react-redux";
 
 const SevenDayForecast = () => {
-  const { forecast, status, error } = useSelector((state) => state.weather);
-
-  if (status === "loading") return <div className="text-center">Loading...</div>;
-  if (error) return <div className="text-center text-red-500">{error}</div>;
-  if (!forecast) return null;
+  const { forecast } = useSelector((state) => state.weather);
 
   // Group forecast by unique date
   const dailyForecast = forecast.list.reduce((acc, item) => {

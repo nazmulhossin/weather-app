@@ -4,11 +4,7 @@ const CurrentWeather = () => {
   const dateFormatOptions = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-US", dateFormatOptions);
-  const { currentWeather, status, error } = useSelector((state) => state.weather);
-
-  if (status === "loading") return <div className="text-center">Loading...</div>;
-  if (error) return <div className="text-center text-red-500">{error}</div>;
-  if (!currentWeather) return null;
+  const { currentWeather } = useSelector((state) => state.weather);
 
   return (
     <section className="big-card">

@@ -1,17 +1,23 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import CurrentWeather from "./CurrentWeather"
 import FiveDayForecast from "./FiveDayForecast"
 import { getCurrentWeather, getFiveDayForecast } from "../features/weather/weatherSlice";
+import ErrorCard from "./ErrorCard";
+import Loader from "./Loader";
 
 const Main = () => {
   const dispatch = useDispatch();
+  const { currentWeather, forecast, status, error } = useSelector((state) => state.weather);
 
   // Fetch initial data for Dhaka when the component mounts
   useEffect(() => {
     dispatch(getCurrentWeather("Dhaka"));
     dispatch(getFiveDayForecast("Dhaka"));
   }, [dispatch]);
+
+  if (status === "loading" || !currentWeather || !forecast) return <Loader />;
+  if (status === "failed") return <ErrorCard error={error} />;
 
   return (
     <main className="container-custom">
